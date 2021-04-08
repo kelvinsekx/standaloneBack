@@ -5,12 +5,13 @@ const nodeExternals = require("webpack-node-externals");
 
 const config = {
     name: "server",
-    entry : ['/node_modules/regenerator-runtime/runtime.js', path.join(cwd, "./server/server.js")],
+    entry : [
+        /**'/node_modules/regenerator-runtime/runtime.js',*/ path.join(cwd, "./server/server.js")],
     target: "node",
     output: {
         path : path.join(cwd, "/dist/"),
         filename: "server.gen.js",
-        publicPath : "dist",
+        publicPath : "/dist/",
         libraryTarget: "commonjs2"
     },
     externals: [nodeExternals()],
@@ -19,15 +20,7 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-			loader:	"babel-loader",
-			options : {
-				presets: [
-				['@babel/preset-env', { targets: "defaults" }
-				]]
-			}
-		}
-
+                use: ["babel-loader"]
             }
         ]
     }
