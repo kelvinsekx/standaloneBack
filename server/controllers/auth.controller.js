@@ -22,9 +22,9 @@ const signin = (req, res) => {
       );
 
       res.cookie("t", token, {
-        expire: new Date() + 9999,
+        expire: new Date() + 9999
       });
-
+      //console.log(user)
       return res.json({
         token,
         user: { _id: user._id, name: user.name, email: user.email },
@@ -34,6 +34,7 @@ const signin = (req, res) => {
 };
 
 const signout = (req, res) => {
+  //console.log('haa')
   res.clearCookie("t");
   return res.status(200).json({
     message: "signed out",
@@ -42,7 +43,8 @@ const signout = (req, res) => {
 
 const requireSignin = expressJwt({
   secret: config.jwtSecret,
-  algorithms: ["auth"],
+  algorithms: ['sha1','RS256', 'HS256'],
+  userProperty: 'auth'
 });
 
 const hasAuthorization = (req, res, next) => {

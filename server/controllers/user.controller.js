@@ -20,19 +20,6 @@ const create = async (req, res, next) => {
 
  }
 
-//  const create = async (req, res) => {
-//     const user = new User(req.body)
-//     try {
-//       await user.save()
-//       return res.status(200).json({
-//         message: "Successfully signed up !"
-//       })
-//     } catch (err) {
-//       return res.status(400).json({
-//         error: errorHandler.getErrorMessage(err)
-//       })
-//     }
-//   }
 
 
 const list = (req, res) => {
@@ -42,7 +29,7 @@ const list = (req, res) => {
              error: errorHandler.getErrorMessage(err)
          })
      }
-    res.json(users)
+    res.json(result)
  }).select('name email updated created')
 }
 
@@ -54,12 +41,14 @@ const userByID = (req, res, next, id) => {
             })
         }
         req.profile = user
+        console.log(req.profile)
         next()
     })
  }
 const read = (req, res) => {
-    req.profiile.hashed_password = undefined;
+    req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
+    console.log(req.profile)
     return res.json(req.profile)
  }
  
@@ -67,7 +56,7 @@ const update = (req, res, next) => {
     let user = req.profile;
      user = _.extend(user, req.body);
     user.updated = Date.now();
-    user.save((err)=>{
+    user.save((err, user)=>{
         if(err) {
             return res.status(400).json({
                 error: errorHandler.getErrorMessage(err)
@@ -75,7 +64,7 @@ const update = (req, res, next) => {
         }
         user.hashed_password = undefined;
         user.salt = undefined;
-        res.json()
+        res.json(user)
     })
  }
 const remove = (req, res, next) => { 
