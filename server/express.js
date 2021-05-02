@@ -8,8 +8,11 @@ import helmet from "helmet";
 import cors from "cors";
 
 import Template from "./../template"
+
 import userRoutes from "./routes/user.routes"
 import authRoutes from "./routes/auth.routes"
+ import postRoutes from "./routes/post.routes";
+
 import path from "path"
 //only use at dev mood
 import devBundle from './devBundle';
@@ -19,7 +22,7 @@ const cwd = process.cwd()
 const app = express();
 
 devBundle.compile(app);
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 
@@ -30,8 +33,9 @@ app.use(cors());
 
 app.use("/dist", express.static(path.join(cwd, 'dist')))
 
-app.use("/", authRoutes)
-app.use("/", userRoutes)
+app.use("/", postRoutes);
+app.use("/", authRoutes);
+app.use("/", userRoutes);
 app.get("/", (req, res) => {
     res.status(200).send(Template())
 })

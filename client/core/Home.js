@@ -5,8 +5,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import uniImg from "./../assets/images/profiler.jpg";
-import {Link} from "react-router-dom"
 
+import FindPeople from "../user/FindPeople"
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 600,
@@ -28,10 +28,10 @@ export default function Home() {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <Link to="/users">Users</Link>
       <Typography variant="h6" className={classes.title}>
         Home Page
       </Typography>
+      <FindPeople />
       <CardMedia
         className={classes.media}
         image={uniImg}

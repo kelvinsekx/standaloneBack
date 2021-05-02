@@ -6,6 +6,9 @@ import Signup from "./user/Signup";
 import SignIn from "./auth/Signin";
 import Profile from "./user/Profile";
 import EditProfile from "./user/EditProfile"
+
+import NewsFeed from "./post/Newsfeed";
+
 import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu"
 
@@ -25,6 +28,9 @@ const MainRouter = () => (
       </Route>
       <Route exact path="/signin">
         <SignIn />
+      </Route>
+      <Route exact path="/feeds">
+        <NewsFeed />
       </Route>
       <PrivateRoute path="/user/edit/:userId" component={EditProfile} />
       <Route exact path="/user/:userId" component={Profile} />
