@@ -15,13 +15,13 @@ import authRoutes from "./routes/auth.routes"
 
 import path from "path"
 //only use at dev mood
-import devBundle from './devBundle';
+//import devBundle from './devBundle';
 
 
 const cwd = process.cwd()
 const app = express();
 
-devBundle.compile(app);
+//devBundle.compile(app);
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
