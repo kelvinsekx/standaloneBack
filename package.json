@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/server.gen.js",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install npm",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm",
     "development": "nodemon"
   },
   "keywords": [],
@@ -19,7 +19,7 @@
     "babel-loader": "8.1.0",
     "file-loader": "6.0.0",
     "nodemon": "2.0.2",
-    "webpack": "4.42.1",
+    "webpack": "^4.42.1",
     "webpack-cli": "3.3.11",
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0",
@@ -48,6 +48,7 @@
     "regenerator-runtime": "^0.13.7"
   },
   "engines": {
-    "node": "10.16.0"
+    "node": "14.16.1",
+    "npm": "7.6.3"
   }
 }
